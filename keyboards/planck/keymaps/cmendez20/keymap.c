@@ -19,27 +19,27 @@
 
 
 enum planck_layers {
-  _BASE,
-  _NAV,
-  _MOUSE,
-  _MEDIA,
-  _NUM,
-  _SYM,
-  _FUN,
-  _GAME,
-  _GAMEFN
+  _Base,
+  _Nav,
+  _Mouse,
+  _Media,
+  _Num,
+  _Sym,
+  _Fun,
+  _Game,
+  _Gamefn
 };
 
 enum planck_keycodes {
-  BASE = SAFE_RANGE,
-  NAV,
-  MOUSE,
-  MEDIA,
-  NUM,
-  SYM,
-  FUN,
-  GAME,
-  GAMEFN
+  Base = SAFE_RANGE,
+  Nav,
+  Mouse,
+  Media,
+  Num,
+  Sym,
+  Fun,
+  Game,
+  Gamefn
 };
 
 // Left-hand home row mods
@@ -54,15 +54,15 @@ enum planck_keycodes {
 #define HOME_L LALT_T(KC_L)
 #define HOME_SCLN RGUI_T(KC_SCLN)
 
-#define _BASE
-#define _NAV
-#define _MOUSE
-#define _MEDIA
-#define _NUM
-#define _SYM
-#define _FUN
-#define _GAME
-#define _GAMEFN
+#define _BASE 0
+#define _NAV 1
+#define _MOUSE 2
+#define _MEDIA 3
+#define _NUM 4
+#define _SYM 5
+#define _FUN 6
+#define _GAME 7
+#define _GAMEFN 8
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -81,7 +81,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_Q,       KC_W,      KC_E,                 KC_R,              KC_T,              KC_NO,    KC_NO,    KC_Y,            KC_U,               KC_I,             KC_O,     KC_P,
     HOME_A,     HOME_S,    HOME_D,               HOME_F,            KC_G,              KC_NO,    KC_NO,    KC_H,            HOME_J,             HOME_K,           HOME_L,   HOME_SCLN,
     KC_Z,       KC_X,      KC_C,                 KC_V,              KC_B,              KC_NO,    KC_NO,    KC_N,            KC_M,               KC_COMM,          KC_DOT,   KC_QUOT,
-    KC_NO,      KC_NO,     LT(MEDIA, KC_ESC),    LT(NAV, KC_SPC),   LT(MOUSE, KC_TAB), KC_NO,    KC_NO,    LT(SYM, KC_ENT), LT(NUM, KC_BSPC),   LT(FUN, KC_DEL),  KC_NO,    KC_NO
+    KC_NO,      KC_SLSH,     LT(_MEDIA, KC_ESC),    LT(_NAV, KC_SPC),   LT(_MOUSE, KC_TAB), KC_NO,    KC_NO,    LT(_SYM, KC_ENT), LT(_NUM, KC_BSPC),   LT(_FUN, KC_DEL),  KC_NO,    TG(_GAME)
 ),
 
 // KC_GRV
@@ -101,7 +101,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     RESET,       KC_NO,       KC_NO,       KC_NO,       KC_NO,        KC_NO,       KC_NO,     	KC_INS,           KC_HOME,          KC_PGDN,          KC_PGUP,    KC_END,
     KC_LGUI,     KC_LALT,     KC_LSFT,     KC_LCTL,     KC_NO,        KC_NO,       KC_NO,       KC_CAPS,          KC_LEFT,          KC_DOWN,          KC_UP,      KC_RGHT,
     KC_NO,       KC_NO,       KC_NO,       KC_NO,       KC_NO,        KC_NO,       KC_NO,       KC_AGIN,          KC_PSTE,          KC_COPY,          KC_CUT,     KC_UNDO,
-    KC_NO,       KC_NO,       KC_NO,       KC_TRNS,     KC_NO,        KC_NO,       KC_NO,       LT(SYM, KC_ENT),  LT(NUM, KC_BSPC), LT(FUN, KC_DEL),  KC_NO,      KC_NO
+    KC_NO,       KC_NO,       KC_NO,       KC_TRNS,     KC_NO,        KC_NO,       KC_NO,       LT(_SYM, KC_ENT),  LT(_NUM, KC_BSPC), LT(_FUN, KC_DEL),  KC_NO,      KC_NO
 ),
 
 /* _MOUSE 2
@@ -118,7 +118,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_MOUSE] = LAYOUT_planck_grid(
     RESET,       KC_NO,       KC_NO,       KC_NO,       KC_NO,        KC_NO,       KC_NO,     	KC_AGIN,          KC_WBAK,          KC_COPY,          KC_PSTE,    KC_WFWD,
     KC_LGUI,     KC_LALT,     KC_LSFT,     KC_LCTL,     KC_NO,        KC_NO,       KC_NO,       KC_NO,            KC_MS_L,          KC_MS_D,          KC_MS_U,    KC_MS_R,
-    KC_NO,       KC_NO,       KC_NO,       KC_NO,       KC_NO,        KC_NO,       KC_NO,       KC_NO,            KC_WH_L,          KC_WH_D,          KC_WH_U,    KC_WH_R,
+    KC_NO,       KC_NO,       KC_WBAK,     KC_WFWD,     KC_NO,        KC_NO,       KC_NO,       KC_NO,            KC_WH_L,          KC_WH_D,          KC_WH_U,    KC_WH_R,
     KC_NO,       KC_NO,       KC_NO,       KC_NO,       KC_TRNS,      KC_NO,       KC_NO,       KC_BTN2,          KC_BTN1,          KC_BTN3,          KC_NO,      KC_NO
 ),
 
@@ -137,7 +137,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     RESET,       KC_NO,       KC_NO,       KC_NO,       KC_NO,        KC_NO,       KC_NO,       KC_NO,       KC_NO,       KC_NO,        KC_NO,        KC_NO,
     KC_LGUI,     KC_LALT,     KC_LSFT,     KC_LCTL,     KC_NO,        KC_NO,       KC_NO,       KC_NO,       KC_MPRV,     KC_VOLD,      KC_VOLU,      KC_MNXT,
     KC_NO,       KC_NO,       KC_NO,       KC_NO,       KC_NO,        KC_NO,       KC_NO,       KC_NO,       KC_NO,       KC_NO,        KC_NO,        KC_NO,
-    KC_NO,       KC_NO,       KC_DOT,      KC_0,        KC_MINS,      KC_NO,       KC_NO,       KC_NO,       KC_TRNS,     KC_NO,        KC_NO,        KC_NO
+    KC_NO,       KC_NO,       KC_TRNS,     KC_NO,       KC_NO,        KC_NO,       KC_NO,       KC_MSTP,     KC_MPLY,     KC_MUTE,      KC_NO,        KC_NO
 ),
 
 /* _NUM 4
@@ -155,7 +155,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_LBRC,       KC_7,       KC_8,       KC_9,       KC_RBRC,       KC_NO,       KC_NO,       KC_NO,       KC_NO,        KC_NO,       KC_NO,     RESET,
     KC_SCLN,       KC_4,       KC_5,       KC_6,       KC_EQL,        KC_NO,       KC_NO,       KC_NO,       KC_RCTL,      KC_RSFT,     KC_LALT,   KC_RGUI,
     KC_GRV,        KC_1,       KC_2,       KC_3,       KC_BSLS,       KC_NO,       KC_NO,       KC_NO,       KC_NO,        KC_NO,       KC_NO,     KC_NO,
-    KC_TRNS,       KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,       KC_TRNS,     KC_TRNS,     KC_TRNS,     KC_TRNS,      KC_TRNS,     KC_TRNS,   KC_TRNS
+    KC_NO,         KC_NO,      KC_DOT,     KC_0,       KC_MINS,       KC_NO,       KC_NO,       KC_NO,       KC_TRNS,      KC_NO,       KC_NO,     KC_NO
 ),
 
 /* _SYM 5
@@ -171,9 +171,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_SYM] = LAYOUT_planck_grid(
     KC_LCBR,   KC_AMPR, KC_ASTR, KC_LPRN, KC_RCBR,  KC_NO,       KC_NO,       KC_NO,       KC_NO,        KC_NO,       KC_NO,       RESET,
-    KC_COLN,   KC_DLR,  KC_PERC, KC_CIRC, KC_PLUS,  KC_NO,       KC_NO,       KC_NO,       KC_RCTL,      KC_RSFT,     KC_LALT,     KC_RGUI,
+    KC_SLSH,   KC_DLR,  KC_PERC, KC_CIRC, KC_PLUS,  KC_NO,       KC_NO,       KC_NO,       KC_RCTL,      KC_RSFT,     KC_LALT,     KC_RGUI,
     KC_TILD,   KC_EXLM, KC_AT,   KC_HASH, KC_PIPE,  KC_NO,       KC_NO,       KC_NO,       KC_NO,        KC_NO,       KC_NO,       KC_NO,
-    KC_NO,     KC_NO,   KC_LPRN, KC_RPRN, KC_UNDS,  KC_NO,       KC_NO,       KC_TRNS,     KC_NO,        KC_NO,       KC_NO,       KC_NO
+    KC_COLN,   KC_SLSH,   KC_LPRN, KC_RPRN, KC_UNDS,  KC_NO,       KC_NO,       KC_TRNS,     KC_NO,        KC_NO,       KC_NO,       KC_NO
 ),
 
 /* _FUN 6
@@ -209,7 +209,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_TAB,  KC_Q, KC_W, KC_E, KC_R,  KC_T,   KC_Y,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_MPLY,
     KC_1,    KC_A, KC_S, KC_D, KC_F,  KC_G,   KC_NO,  KC_NO,   KC_MPRV, KC_VOLD, KC_VOLU, KC_MNXT,
     KC_LSFT, KC_Z, KC_X, KC_C, KC_V,  KC_B,   KC_M,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
-    KC_ESC,  KC_4, KC_3, KC_2, MO(GAMEFN), KC_SPC, KC_SPC, KC_NO,   KC_NO,   KC_NO,   KC_NO,   TO(BASE)
+    KC_ESC,  KC_4, KC_3, KC_2, MO(_GAMEFN), KC_SPC, KC_SPC, KC_NO,   KC_NO,   KC_NO,   KC_NO,   TO(_BASE)
 ),
 
 /* _GAMEFN 8

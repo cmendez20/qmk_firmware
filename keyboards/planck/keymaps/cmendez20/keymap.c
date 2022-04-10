@@ -15,6 +15,7 @@
  */
 
 #include QMK_KEYBOARD_H
+#include "features/caps_word.h"
 #include "muse.h"
 
 
@@ -153,7 +154,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_NUM] = LAYOUT_planck_grid(
     KC_LBRC,       KC_7,       KC_8,       KC_9,       KC_RBRC,       KC_NO,       KC_NO,       KC_NO,       KC_NO,        KC_NO,       KC_NO,     RESET,
-    KC_SCLN,       KC_4,       KC_5,       KC_6,       KC_EQL,        KC_NO,       KC_NO,       KC_NO,       KC_RCTL,      KC_RSFT,     KC_LALT,   KC_RGUI,
+    KC_SLASH,       KC_4,       KC_5,       KC_6,       KC_EQL,        KC_NO,       KC_NO,       KC_NO,       KC_RCTL,      KC_RSFT,     KC_LALT,   KC_RGUI,
     KC_GRV,        KC_1,       KC_2,       KC_3,       KC_BSLS,       KC_NO,       KC_NO,       KC_NO,       KC_NO,        KC_NO,       KC_NO,     KC_NO,
     KC_NO,         KC_NO,      KC_DOT,     KC_0,       KC_MINS,       KC_NO,       KC_NO,       KC_NO,       KC_TRNS,      KC_NO,       KC_NO,     KC_NO
 ),
@@ -171,7 +172,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_SYM] = LAYOUT_planck_grid(
     KC_LCBR,   KC_AMPR, KC_ASTR, KC_LPRN, KC_RCBR,  KC_NO,       KC_NO,       KC_NO,       KC_NO,        KC_NO,       KC_NO,       RESET,
-    KC_SLSH,   KC_DLR,  KC_PERC, KC_CIRC, KC_PLUS,  KC_NO,       KC_NO,       KC_NO,       KC_RCTL,      KC_RSFT,     KC_LALT,     KC_RGUI,
+    KC_QUES,   KC_DLR,  KC_PERC, KC_CIRC, KC_PLUS,  KC_NO,       KC_NO,       KC_NO,       KC_RCTL,      KC_RSFT,     KC_LALT,     KC_RGUI,
     KC_TILD,   KC_EXLM, KC_AT,   KC_HASH, KC_PIPE,  KC_NO,       KC_NO,       KC_NO,       KC_NO,        KC_NO,       KC_NO,       KC_NO,
     KC_COLN,   KC_SLSH,   KC_LPRN, KC_RPRN, KC_UNDS,  KC_NO,       KC_NO,       KC_TRNS,     KC_NO,        KC_NO,       KC_NO,       KC_NO
 ),
@@ -231,3 +232,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 )
 
 };
+
+bool process_record_user(uint16_t keycode, keyrecord_t* record) {
+  if (!process_caps_word(keycode, record)) { return false; }
+  // Your macros ...
+
+  return true;
+}
+
+void matrix_scan_user(void) {
+  caps_word_task();
+  // Other tasks...
+}

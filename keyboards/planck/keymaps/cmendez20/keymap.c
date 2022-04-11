@@ -85,8 +85,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_NO,      KC_SLSH,     LT(_MEDIA, KC_ESC),    LT(_NAV, KC_SPC),   LT(_MOUSE, KC_TAB), KC_NO,    KC_NO,    LT(_SYM, KC_ENT), LT(_NUM, KC_BSPC),   LT(_FUN, KC_DEL),  KC_NO,    TG(_GAME)
 ),
 
-// KC_GRV
-
 /* _NAV 1
  * ,-----------------------------------------------------------------------------------.
  * | Tab  |   Q  |   W  |   F  |   P  |   G  |   J  |   L  |   U  |   Y  |   ;  | Bksp |
@@ -101,7 +99,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_NAV] = LAYOUT_planck_grid(
     RESET,       KC_NO,       KC_NO,       KC_NO,       KC_NO,        KC_NO,       KC_NO,     	KC_INS,           KC_HOME,          KC_PGDN,          KC_PGUP,    KC_END,
     KC_LGUI,     KC_LALT,     KC_LSFT,     KC_LCTL,     KC_NO,        KC_NO,       KC_NO,       KC_CAPS,          KC_LEFT,          KC_DOWN,          KC_UP,      KC_RGHT,
-    KC_NO,       KC_NO,       KC_NO,       KC_NO,       KC_NO,        KC_NO,       KC_NO,       KC_AGIN,          KC_PSTE,          KC_COPY,          KC_CUT,     KC_UNDO,
+    KC_NO,       LCTL(KC_X),       LCTL(KC_C),       LCTL(KC_V),       KC_NO,        KC_NO,       KC_NO,       KC_AGIN,          LCTL(KC_V),          LCTL(KC_C),          LCTL(KC_X),     KC_UNDO,
     KC_NO,       KC_NO,       KC_NO,       KC_TRNS,     KC_NO,        KC_NO,       KC_NO,       LT(_SYM, KC_ENT),  LT(_NUM, KC_BSPC), LT(_FUN, KC_DEL),  KC_NO,      KC_NO
 ),
 
@@ -208,9 +206,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_GAME] = LAYOUT_planck_grid(
     KC_TAB,  KC_Q, KC_W, KC_E, KC_R,  KC_T,   KC_Y,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_MPLY,
-    KC_1,    KC_A, KC_S, KC_D, KC_F,  KC_G,   KC_NO,  KC_NO,   KC_MPRV, KC_VOLD, KC_VOLU, KC_MNXT,
+    KC_LCTL,    KC_A, KC_S, KC_D, KC_F,  KC_G,   KC_NO,  KC_NO,   KC_MPRV, KC_VOLD, KC_VOLU, KC_MNXT,
     KC_LSFT, KC_Z, KC_X, KC_C, KC_V,  KC_B,   KC_M,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,
-    KC_ESC,  KC_4, KC_3, KC_2, MO(_GAMEFN), KC_SPC, KC_SPC, KC_NO,   KC_NO,   KC_NO,   KC_NO,   TO(_BASE)
+    KC_NO,  KC_NO, KC_LALT, KC_SPC, MO(_GAMEFN), KC_NO, KC_NO, KC_NO,   KC_NO,   KC_NO,   KC_NO,   TO(_BASE)
 ),
 
 /* _GAMEFN 8
@@ -225,10 +223,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'
  */
 [_GAMEFN] = LAYOUT_planck_grid(
-    KC_TAB,  KC_1,  KC_2,  KC_3,  KC_4,    KC_5,  KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
+    KC_1,  KC_2,  KC_3,  KC_4,  KC_NO,    KC_NO,  KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
     KC_4,    KC_NO, KC_NO, KC_NO, KC_NO,   KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
-    KC_LCTL, KC_NO, KC_NO, KC_NO, KC_NO,   KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
-    KC_ESC,  KC_NO, KC_NO, KC_NO, KC_TRNS, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO
+    KC_5, KC_6, KC_7, KC_8, KC_NO,   KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
+    KC_ESC,  KC_NO, KC_NO, KC_NO, KC_TRNS, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_ESC
 )
 
 };

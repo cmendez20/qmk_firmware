@@ -41,7 +41,8 @@ enum custom_keycodes {
   Sym,
   Fun,
   Game,
-  Gamefn
+  Gamefn,
+  Email
 };
 
 // Left-hand home row mods
@@ -73,7 +74,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       KC_LCTL,  HOME_A,  HOME_S,  HOME_D,  HOME_F,    KC_G,                         KC_H,  HOME_J,  HOME_K, HOME_L, HOME_SCN, KC_QUOT,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, TG(_GAME),
+      KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_N,    KC_M, KC_COMM,  KC_DOT, KC_QUOT, TG(_GAME),
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
        LT(_MEDIA, KC_ESC),   LT(_NAV, KC_SPC),   LT(_MOUSE, KC_TAB),   LT(_SYM, KC_ENT),   LT(_NUM, KC_BSPC),  LT(_FUN, KC_DEL)
                                       //`--------------------------'  `--------------------------'
@@ -141,7 +142,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_FUN] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-      KC_NO,   KC_F12,  KC_F7,   KC_F8,   KC_F9,  KC_SLEP,                        KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   RESET,
+      KC_NO,   KC_F12,  KC_F7,   KC_F8,   KC_F9,  KC_SLEP,                        KC_NO,   KC_NO,   Email,   KC_NO,   KC_NO,   RESET,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       KC_NO,   KC_F11,   KC_F4,   KC_F5,  KC_F6,   KC_NO,                        KC_NO,  KC_RCTL, KC_RSFT, KC_LALT, KC_RGUI,  KC_NO,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
@@ -159,7 +160,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       KC_LSFT,  KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_N,    KC_M,   KC_NO,   KC_NO,   KC_NO,  TO(_BASE),
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                             KC_LALT,  KC_SPC,  LT(_GAMEFN, KC_ESC),    KC_NO,   KC_NO,  TO(_BASE)
+                                     KC_LALT,  KC_SPC,  MO(_GAMEFN),    KC_NO,   KC_NO,  TO(_BASE)
                                       //`--------------------------'  `--------------------------'
   ),
 
@@ -167,9 +168,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
       KC_TAB,   KC_1,   KC_NO,   KC_3,    KC_4,     KC_M,                         KC_NO,   KC_NO,  KC_NO,   KC_NO,   KC_NO,   KC_NO,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-       KC_2,    KC_NO,  KC_NO,   KC_NO,    KC_4,   KC_NO,                         KC_NO,   KC_NO,  KC_NO,   KC_NO,   KC_NO,   KC_NO,
+       KC_2,    KC_NO,  KC_NO,   KC_NO,    KC_4,   KC_Y,                         KC_NO,   KC_NO,  KC_NO,   KC_NO,   KC_NO,   KC_NO,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_ESC,   KC_NO,   KC_WBAK, KC_WFWD,  KC_NO,  KC_NO,                        KC_NO,   KC_NO,  KC_NO,   KC_NO,   KC_NO,   KC_NO,
+      KC_ESC,   KC_NO,   KC_Y,   KC_NO,   KC_NO,   KC_NO,                        KC_NO,   KC_NO,  KC_NO,   KC_NO,   KC_NO,   KC_NO,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                            KC_NO,   KC_NO,  KC_TRNS,    KC_NO,   KC_NO,   KC_NO
                                       //`--------------------------'  `--------------------------'
@@ -179,6 +180,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 bool process_record_user(uint16_t keycode, keyrecord_t* record) {
   if (!process_caps_word(keycode, record)) { return false; }
   // Your macros ...
+  switch(keycode) {
+      case Email: // types my email address
+      if (record->event.pressed) {
+          SEND_STRING("mendecj812@gmail.com");
+      }
+      return false;
+  }
 
   return true;
 }
